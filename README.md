@@ -1,38 +1,66 @@
-### Beta Bank
+# Proyecto: Modelo Predictivo para Detectar Clientes en Riesgo de Deserción en Beta Bank
 
-### Modelo Predictivo para Detectar Clientes en Riesgo de Deserción en Beta Bank
+## Descripción del Proyecto
+El objetivo de este proyecto es desarrollar un modelo predictivo que permita identificar clientes con alto riesgo de cancelar sus cuentas en **Beta Bank**. Retener clientes existentes es más rentable que adquirir nuevos, por lo que este modelo ayudará al banco a priorizar estrategias de retención.
 
-Este proyecto consiste en desarrollar un modelo predictivo de aprendizaje supervisado para identificar clientes de Beta Bank que tienen un alto riesgo de cancelar sus cuentas, dado que retener clientes existentes es más rentable que adquirir nuevos.
+Se utilizaron datos históricos sobre el comportamiento de los clientes, incluyendo características como saldo, edad, género, país, actividad, número de productos y estado de cancelación de la cuenta. El modelo debe alcanzar un puntaje F1 mínimo de **0.59**.
 
-Se analizaron datos históricos del comportamiento de los clientes, incluyendo características como el saldo, edad, género, país, actividad, número de productos, y si han cancelado su cuenta o no. Estas características fueron procesadas y utilizadas para construir y optimizar un modelo que maximice el valor F1, asegurando un puntaje mínimo de 0.59.
+---
 
-### Metodología
-#### 1. Preparación de Datos:
-Se exploraron los datos para identificar valores faltantes, outliers y posibles desequilibrios en las clases objetivo.
-Se aplicaron técnicas de codificación como one-hot encoding para variables categóricas y estandarización de datos numéricos para mejorar el rendimiento de los modelos.
+## Metodología
 
-#### 2. Modelos Considerados:
-Se evaluaron tres algoritmos principales: Regresión Logística, Árbol de Decisión y Bosque Aleatorio.
-Los modelos fueron optimizados mediante validación cruzada y búsqueda de hiperparámetros, incluyendo ajustes para el desequilibrio de clases mediante técnicas de sobremuestreo.
+### 1. Preparación de Datos
+- **Exploración inicial**:
+  - Se identificaron valores faltantes y outliers.
+  - Se verificaron desequilibrios en las clases objetivo.
 
-#### 3. Optimización de Parámetros:
-Para el Bosque Aleatorio, el valor de n_estimators se fijó en 60, balanceando entre rendimiento y costo computacional, mientras que max_depth se estableció en 100 para maximizar el rendimiento sin sobreajustar el modelo.
-Este modelo fue el seleccionado final debido a su desempeño superior en las métricas clave.
+- **Preprocesamiento**:
+  - Se aplicaron técnicas de **one-hot encoding** para variables categóricas.
+  - Las características numéricas fueron estandarizadas para mejorar el rendimiento de los modelos.
 
-### Resultados del Modelo Final
-Con un modelo de Bosque Aleatorio configurado con n_estimators = 60 y max_depth = 100, se lograron los siguientes resultados:
+### 2. Selección de Modelos
+Se evaluaron tres algoritmos principales:
+- **Regresión Logística**
+- **Árbol de Decisión**
+- **Bosque Aleatorio**
 
-- F1 Score: 83.39%
-  Indicador de un modelo bien balanceado entre precisión y sensibilidad.
--  Recall (Sensibilidad): 83.73%
-  Muestra que el modelo identifica correctamente la mayoría de los clientes que cancelan sus cuentas.
-- Exactitud (Accuracy): 83.77%
-  Alta capacidad para predecir correctamente tanto positivos como negativos.
-- AUC-ROC: 83.77%
-  Confirmación de que el modelo es significativamente mejor que uno aleatorio.
+Se optimizaron los hiperparámetros de cada modelo mediante validación cruzada y se ajustaron las técnicas para manejar el desequilibrio de clases, como el **sobremuestreo**.
 
-### Hallazgos y Conclusión
-La matriz de confusión mostró una alta proporción de verdaderos positivos y negativos, junto con pocos falsos positivos y negativos, indicando un rendimiento robusto.
-Además, la validación cruzada confirmó que el modelo es consistente y generaliza bien en diferentes subconjuntos de datos.
+### 3. Optimización del Modelo Seleccionado
+El modelo final seleccionado fue el **Bosque Aleatorio** debido a su rendimiento superior:
+- **n_estimators**: 60 (número de árboles en el bosque, balance entre rendimiento y costo computacional).
+- **max_depth**: 100 (profundidad máxima, para evitar el sobreajuste y maximizar el rendimiento).
 
-Se concluye que este modelo predictivo es una herramienta efectiva para predecir clientes en riesgo de deserción, ayudando al banco a priorizar estrategias de retención y mejorar la experiencia del cliente.
+---
+
+## Resultados del Modelo Final
+
+Con la configuración óptima, el modelo alcanzó los siguientes resultados:
+
+- **F1 Score**: **83.39%**
+  - Indica un buen balance entre precisión y sensibilidad.
+- **Recall (Sensibilidad)**: **83.73%**
+  - Alta capacidad para identificar correctamente a los clientes que cancelan sus cuentas.
+- **Exactitud (Accuracy)**: **83.77%**
+  - Alto porcentaje de predicciones correctas, tanto positivas como negativas.
+- **AUC-ROC**: **83.77%**
+  - Muestra que el modelo tiene un desempeño significativamente mejor que uno aleatorio.
+
+### Matriz de Confusión
+La matriz de confusión reveló:
+- Alta proporción de verdaderos positivos y negativos.
+- Baja cantidad de falsos positivos y falsos negativos, confirmando un rendimiento robusto.
+
+---
+
+## Hallazgos y Conclusión
+1. **Consistencia del modelo**:
+   - La validación cruzada demostró que el modelo generaliza bien en diferentes subconjuntos de datos.
+
+2. **Impacto práctico**:
+   - El modelo predictivo es una herramienta valiosa para priorizar clientes en riesgo y diseñar estrategias de retención.
+
+3. **Recomendaciones**:
+   - Implementar este modelo en el flujo operativo del banco para mejorar la experiencia del cliente y reducir la tasa de deserción.
+
+Este modelo posiciona a Beta Bank para tomar decisiones informadas y fortalecer la lealtad de sus clientes.
