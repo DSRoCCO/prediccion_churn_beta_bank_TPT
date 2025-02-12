@@ -6,50 +6,30 @@ El objetivo de este proyecto es desarrollar un modelo predictivo que permita ide
 Se utilizaron datos históricos sobre el comportamiento de los clientes, incluyendo características como saldo, edad, género, país, actividad, número de productos y estado de cancelación de la cuenta. El modelo debe alcanzar un puntaje F1 mínimo de **0.59**.
 
 ---
+Se optimizaron los hiperparámetros de cada modelo mediante validación cruzada y se ajustaron las técnicas para manejar el desequilibrio de clases, como el **sobremuestreo** y el **submuestreo**.
+Se resalta la comparacion de trabajar con balanceo de clases vs trabajar sin balanceo de clases y se comparan resultados para ver las consecuencias de ambos.
 
-## Metodología
-
-### 1. Preparación de Datos
-- **Exploración inicial**:
-  - Se identificaron valores faltantes y outliers.
-  - Se verificaron desequilibrios en las clases objetivo.
-
-- **Preprocesamiento**:
-  - Se aplicaron técnicas de **one-hot encoding** para variables categóricas.
-  - Las características numéricas fueron estandarizadas para mejorar el rendimiento de los modelos.
-
-### 2. Selección de Modelos
-Se evaluaron tres algoritmos principales:
-- **Regresión Logística**
-- **Árbol de Decisión**
-- **Bosque Aleatorio**
-
-Se optimizaron los hiperparámetros de cada modelo mediante validación cruzada y se ajustaron las técnicas para manejar el desequilibrio de clases, como el **sobremuestreo**.
-
-### 3. Optimización del Modelo Seleccionado
+### Optimización del Modelo Seleccionado
 El modelo final seleccionado fue el **Bosque Aleatorio** debido a su rendimiento superior:
-- **n_estimators**: 60 (número de árboles en el bosque, balance entre rendimiento y costo computacional).
-- **max_depth**: 100 (profundidad máxima, para evitar el sobreajuste y maximizar el rendimiento).
-
+Sin Balanceo de clases usamos:
+- **n_estimators**: 12 
+- **max_depth**: 56
+- 
+Con Balanceo de clases usamos
+- **n_estimators**: 12 
+- **max_depth**: 14
 ---
 
-## Resultados del Modelo Final
+## Resultados del Modelo - Metricas del Modelo sin Balanceo de clases
 
-Con la configuración óptima, el modelo alcanzó los siguientes resultados:
+## Resultados del Modelo - Metricas del Modelo con Balanceo de clases
 
-- **F1 Score**: **83.39%**
-  - Indica un buen balance entre precisión y sensibilidad.
-- **Recall (Sensibilidad)**: **83.73%**
-  - Alta capacidad para identificar correctamente a los clientes que cancelan sus cuentas.
-- **Exactitud (Accuracy)**: **83.77%**
-  - Alto porcentaje de predicciones correctas, tanto positivas como negativas.
-- **AUC-ROC**: **83.77%**
-  - Muestra que el modelo tiene un desempeño significativamente mejor que uno aleatorio.
 
 ### Matriz de Confusión
 La matriz de confusión reveló:
 - Alta proporción de verdaderos positivos y negativos.
 - Baja cantidad de falsos positivos y falsos negativos, confirmando un rendimiento robusto.
+
 
 ---
 
@@ -64,3 +44,26 @@ La matriz de confusión reveló:
    - Implementar este modelo en el flujo operativo del banco para mejorar la experiencia del cliente y reducir la tasa de deserción.
 
 Este modelo posiciona a Beta Bank para tomar decisiones informadas y fortalecer la lealtad de sus clientes.
+
+
+## Hallazgos
+
+1. **Configuración de Parámetros**:
+
+- n_estimators: Se fijó en 12, ya que a partir de ese valor las métricas se estabilizan y se evita incrementar el costo computacional de manera innecesaria.
+- max_depth: Se estableció en 14, puesto que valores mayores no aportan mejoras significativas en los resultados, lo que permite optimizar el rendimiento sin sobrecargar el cómputo.
+
+2. **Rendimiento del Modelo con los Parámetros Configurados:**
+
+- Las métricas indican que el modelo tiene un desempeño adecuado, destacándose especialmente el F1_score y el recall.
+- La matriz de confusión revela una alta cantidad de verdaderos positivos y verdaderos negativos, mientras que los falsos positivos y falsos negativos son mínimos.
+- Exactitud (Accuracy): El modelo identifica correctamente el 84% de los casos positivos, lo cual es un indicador sólido.
+- Recall (Sensibilidad): Con un 88% de verdaderos positivos correctamente identificados, el modelo demuestra una alta capacidad para detectar la clase positiva.
+- F1_score: Con un valor del 84%, se confirma la robustez del modelo al equilibrar precisión y recall.
+- AUC ROC: Un 84% en esta métrica indica que el modelo tiene un rendimiento significativamente superior al de un clasificador aleatorio.
+- La validación cruzada refuerza la consistencia del modelo, mostrando una exactitud del 80% y una desviación estándar de 0.0076, lo que sugiere estabilidad en diferentes particiones de los datos.
+
+## Conclusión:
+
+Los resultados demuestran que trabajar con clases balanceadas ofrece mejoras sustanciales en la exactitud y sensibilidad del modelo en comparación con el manejo de clases desbalanceadas.
+Se recomienda implementar técnicas de balanceo de clases para asegurar una mayor generalización, robustez y consistencia en el rendimiento del modelo.
