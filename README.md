@@ -14,22 +14,30 @@ El modelo final seleccionado fue el **Bosque Aleatorio** debido a su rendimiento
 Sin Balanceo de clases usamos:
 - **n_estimators**: 12 
 - **max_depth**: 56
-- 
+  
+![Metricas RF n_estimador sin Balanceo](img/metricas_rf_n_estimator_sin_balanceo_clases.png)
+  
 Con Balanceo de clases usamos
 - **n_estimators**: 12 
 - **max_depth**: 14
+  
+![Metricas RF n_estimador con Balanceo](img/metricas_rf_n_estimator_con_balanceo_clases.png)
 ---
 
 ## Resultados del Modelo - Metricas del Modelo sin Balanceo de clases
 
+![Metricas Modelo sin Balanceado](img/metricas_modelo_sin_balanceo_cargas.png)
+
 ## Resultados del Modelo - Metricas del Modelo con Balanceo de clases
 
+![Metricas Modelo Balanceado](img/metricas_modelo_con_balanceo_cargas.png)
 
 ### Matriz de Confusión
 La matriz de confusión reveló:
 - Alta proporción de verdaderos positivos y negativos.
 - Baja cantidad de falsos positivos y falsos negativos, confirmando un rendimiento robusto.
-
+  
+![Matrix Confusion Balanceado](img/matrix_confusion_balanceado.png)
 
 ---
 
